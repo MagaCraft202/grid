@@ -32,7 +32,7 @@ namespace grid {
         /**
          * This is the default constructor
          */
-				    Surf();
+        Surf();
 
         // Lifecycle management
         Surf(const Surf&) = delete;
