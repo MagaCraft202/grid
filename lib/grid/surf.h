@@ -1,6 +1,10 @@
 #ifndef _GRID_SURF_H_
 #define _GRID_SURF_H_
 
+#ifdef _WIN32
+    #define _CRT_SECURE_NO_WARNINGS
+#endif // _WIN32
+
 #include <memory>
 #include <string>
 #include <vector>
@@ -78,18 +82,39 @@ namespace grid {
         std::string GetHost() const;
 
         /**
-         * This method returns the "path" element of the SURF,
-         * as a sequence of steps.
+         * This method returns the "path" element of the SURF.
          * 
          * @note
          *		If the first step of the path is an empty string,
          *		then the SURF has an absolute path.
          * 
          * @return
-         *		The "path" element of the SURF is returned,
-         *		as a sequence of steps.
+         *		The "path" element of the SURF is returned.
          */
-        std::vector<std::string> GetPath() const;
+        std::string GetPath() const;
+
+        /**
+         * This method returns an indication of whether or not the
+         * SURF includes a port number.
+         * 
+         * @return
+         *      An indication of whether or not the
+         *      SURF includes a port number is returned.
+         */
+        bool HasPort() const;
+
+        /**
+         * This method returns the port number element of the SURF,
+         * if it has one.
+         * 
+         * @return
+         *      The port number element of the SURF is returned.
+         * 
+         * @note
+         *      The retuend port number is only valid if the
+         *      HasPort method returns true.
+         */
+        uint16_t GetPort() const;
     private:
         /**
          * This is the type of structure that contains the private

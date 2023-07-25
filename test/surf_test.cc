@@ -11,11 +11,13 @@ char const* groups[] = {
 
 DEFINE_TEST_G(ParseFromString, SurfTests) {
     grid::Surf surf;
-    TEST(surf.ParseFromString("grid!domain.com/foo/bar"));
+    TEST(surf.ParseFromString("grid!domain.com:1234/foo/bar/"));
     TEST_EQ("grid", surf.GetScheme());
     TEST_EQ("domain.com", surf.GetHost());
     // TEST_LOG(surf.GetHost().c_str());
-    TEST_EQ((std::vector<std::string>{"", "foo", "bar"}), surf.GetPath());
+    TEST_EQ("/foo/bar/", surf.GetPath());
+    TEST(surf.HasPort());
+    TEST_EQ(1234, surf.GetPort());
 }
 
 int main() {
